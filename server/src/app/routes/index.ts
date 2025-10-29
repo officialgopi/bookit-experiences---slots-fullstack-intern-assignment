@@ -1,8 +1,8 @@
 import { Router } from "express";
-import { experienceRouter } from "./experience.route";
+import { experiencesRouter } from "./experiences.route";
 
 const router = Router();
 
-router.use("/experiences", experienceRouter);
+router.use("/experiences", experiencesRouter);
 
 export { router as apiRouter };
