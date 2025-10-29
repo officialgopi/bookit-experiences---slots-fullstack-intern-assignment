@@ -15,9 +15,20 @@ const getExperiences = AsyncHandler(async (req, res) => {
     throw new ApiError(400, "Invalid query parameters");
   }
 
-  const { page, limit } = data.query;
+  const { page, limit, search } = data.query;
 
-  const experiences = await ExperienceModel.find()
+  const searchQuery = search
+    ? {
+        $or: [
+          { title: { $regex: search, $options: "i" } },
+          { description: { $regex: search, $options: "i" } },
+          { about: { $regex: search, $options: "i" } },
+          { place: { $regex: search, $options: "i" } },
+        ],
+      }
+    : {};
+
+  const experiences = await ExperienceModel.find(searchQuery)
     .skip((page - 1) * limit)
     .limit(limit);
 
