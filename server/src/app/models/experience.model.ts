@@ -7,6 +7,7 @@ interface IExperience {
   about: string;
   cost: number;
   totalSlots: number;
+  imageUrl: string;
 }
 
 const schema = new mongoose.Schema<IExperience & Document>(
@@ -33,6 +34,10 @@ const schema = new mongoose.Schema<IExperience & Document>(
     },
     totalSlots: {
       type: Number,
+      required: true,
+    },
+    imageUrl: {
+      type: String,
       required: true,
     },
   },
