@@ -17,7 +17,7 @@ function parseEnv(env: NodeJS.ProcessEnv) {
   }
 
   if (data.NODE_ENV !== "development") {
-    if (!data.DATABASE_URL || !data.PORT || !data.BASE_URL) {
+    if (!env.DATABASE_URL || !env.PORT || !env.BASE_URL) {
       throw new Error("Some environment Variables are missing");
     }
   }
