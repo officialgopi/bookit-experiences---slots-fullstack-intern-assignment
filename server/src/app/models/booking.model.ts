@@ -8,6 +8,7 @@ interface IBooking {
   bookingDate: mongoose.Types.ObjectId;
   appliedPromo?: mongoose.Types.ObjectId;
   quantity: number;
+  totalPrice: number;
 }
 
 const schema = new mongoose.Schema<IBooking & Document>({
@@ -34,6 +35,7 @@ const schema = new mongoose.Schema<IBooking & Document>({
   slot: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Slot",
+    required: true,
   },
   bookingDate: {
     type: mongoose.Schema.Types.ObjectId,
@@ -44,6 +46,11 @@ const schema = new mongoose.Schema<IBooking & Document>({
     type: Number,
     required: true,
     min: 1,
+  },
+  totalPrice: {
+    type: Number,
+    required: true,
+    min: 0,
   },
 });
 

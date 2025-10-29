@@ -1,0 +1,16 @@
+import z from "zod";
+
+const getExperiencesSchema = z.object({
+  query: z.object({
+    page: z.coerce.number().default(1),
+    limit: z.coerce.number().default(10),
+  }),
+});
+
+const getExperienceByIdSchema = z.object({
+  params: z.object({
+    experienceId: z.string(),
+  }),
+});
+
+export { getExperiencesSchema, getExperienceByIdSchema };
