@@ -8,5 +8,12 @@ app.use(
     extended: true,
   })
 );
+//ROUTES
+import { apiRouter } from "./routes";
+app.use("/api/v1", apiRouter);
+
+//GLOBAL ERROR HANDLING MIDDLEWARE
+import { globalErrorHandler } from "./middlewares/error.middleware";
+app.use(globalErrorHandler);
 
 export { app };
