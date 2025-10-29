@@ -4,7 +4,7 @@ import {
   getExperienceByIdSchema,
   getExperiencesSchema,
 } from "../schemas/experiences.schema";
-import { ApiError, ApiResponse, AsyncHandler } from "../utils";
+import { ApiError, ApiResponse, AsyncHandler, formatDate } from "../utils";
 
 const getExperiences = AsyncHandler(async (req, res) => {
   const { data, success } = getExperiencesSchema.safeParse({
@@ -72,7 +72,7 @@ const getExperienceById = AsyncHandler(async (req, res) => {
 
     const formattedBookingCount = bookingCount.map(({ _id, count }) => {
       return {
-        date: _id,
+        date: formatDate(new Date(_id)),
         remainingBookings: capacity - count,
       };
     });
