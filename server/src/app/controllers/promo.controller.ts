@@ -11,7 +11,7 @@ const validatePromo = AsyncHandler(async (req, res) => {
     throw new ApiError(400, "Invalid promo code");
   }
 
-  const { promoCode } = data.body;
+  const { promoCode, experience } = data.body;
 
   const promo = await PromoModel.findOne({
     promoCode: promoCode,
@@ -19,6 +19,17 @@ const validatePromo = AsyncHandler(async (req, res) => {
 
   if (!promo) {
     throw new ApiError(404, "Promo code not found");
+  }
+
+  if (
+    promo.linkedExperiences &&
+    !promo.linkedExperiences.includes(experience as any)
+  ) {
+    throw new ApiError(400, "Promo code is not valid for this experience");
+  }
+
+  if (!promo.isActive) {
+    throw new ApiError(400, "Wrong promo code");
   }
 
   new ApiResponse(
