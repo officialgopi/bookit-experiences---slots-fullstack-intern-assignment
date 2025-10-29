@@ -9,7 +9,7 @@ const getExperiencesSchema = z.object({
 
 const getExperienceByIdSchema = z.object({
   params: z.object({
-    experienceId: z.string(),
+    id: z.string(),
   }),
 });
 

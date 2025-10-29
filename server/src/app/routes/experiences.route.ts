@@ -7,6 +7,6 @@ import {
 const router = Router();
 
 router.get("/", getExperiences);
-router.get("/:experienceId", getExperienceById);
+router.get("/:id", getExperienceById);
 
 export { router as experiencesRouter };

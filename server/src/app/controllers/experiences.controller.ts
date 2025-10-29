@@ -39,9 +39,7 @@ const getExperienceById = AsyncHandler(async (req, res) => {
     throw new ApiError(400, "Invalid parameters");
   }
 
-  const experience = await ExperienceModel.findById(
-    data.params.experienceId
-  ).lean();
+  const experience = await ExperienceModel.findById(data.params.id).lean();
 
   if (!experience) {
     throw new ApiError(404, "Experience not found");
