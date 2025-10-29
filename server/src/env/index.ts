@@ -7,6 +7,7 @@ function parseEnv(env: NodeJS.ProcessEnv) {
     NODE_ENV: z.enum(["development", "production"]).default("development"),
     PORT: z.coerce.number().default(3000),
     DATABASE_URL: z.url(),
+    BASE_URL: z.string().default("http://localhost:3000"),
   });
 
   const { data, success, error } = envSchema.safeParse(env);
@@ -16,7 +17,7 @@ function parseEnv(env: NodeJS.ProcessEnv) {
   }
 
   if (data.NODE_ENV !== "development") {
-    if (!data.DATABASE_URL || !data.PORT) {
+    if (!data.DATABASE_URL || !data.PORT || !data.BASE_URL) {
       throw new Error("Some environment Variables are missing");
     }
   }

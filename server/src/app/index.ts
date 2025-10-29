@@ -8,6 +8,15 @@ app.use(
     extended: true,
   })
 );
+
+//SWAGGER SETUP
+import swaggerJsdoc from "swagger-jsdoc";
+import swaggerUi from "swagger-ui-express";
+import { options } from "./constants/swagger-option.constant";
+
+const swaggerSpec = swaggerJsdoc(options);
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+
 //ROUTES
 import { apiRouter } from "./routes";
 app.use("/api/v1", apiRouter);
