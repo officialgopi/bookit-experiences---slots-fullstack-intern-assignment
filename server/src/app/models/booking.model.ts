@@ -5,7 +5,7 @@ interface IBooking {
   email: string;
   experience: mongoose.Types.ObjectId;
   slot: mongoose.Types.ObjectId;
-  date: Date;
+  bookingDate: mongoose.Types.ObjectId;
   appliedPromo?: mongoose.Types.ObjectId;
 }
 
@@ -34,8 +34,9 @@ const schema = new mongoose.Schema<IBooking & Document>({
     type: mongoose.Schema.Types.ObjectId,
     ref: "Slot",
   },
-  date: {
-    type: Date,
+  bookingDate: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "BookingDate",
     default: new Date(),
   },
 });
