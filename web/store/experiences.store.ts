@@ -20,6 +20,7 @@ interface IExperience {
   about: string;
   cost: number;
   totalSlots: number;
+  imageUrl: string;
   slots?: ISlot[];
 }
 
@@ -131,3 +132,5 @@ export const useExperiencesStore = create<ExperiencesStore>((set, get) => ({
     }
   },
 }));
+
+export type { IExperience, ISlot };

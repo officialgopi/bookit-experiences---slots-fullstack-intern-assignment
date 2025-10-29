@@ -35,3 +35,5 @@ export const usePromoStore = create<PromoState>((set) => ({
     }
   },
 }));
+
+export type { IPromo };
